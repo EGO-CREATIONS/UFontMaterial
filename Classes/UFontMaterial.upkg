@@ -1,0 +1,8 @@
+[Flags]
+AllowDownload=True
+ClientOptional=True
+ServerSideOnly=False
+BrokenLinks=False
+Unsecure=False
+Official=False
+Need=False
