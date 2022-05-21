@@ -1,5 +1,5 @@
 // ========================================================================================
-//  Package/class	:  	ECTools.EC_UFontMaterial
+//  Package/class	:  	UFontMaterial.UFontMaterial
 //	Autor		:	Jan "eGo" Urbansky
 //	WWW		:	http://www.ego-creations.de
 //	Script Version	:	0.6
