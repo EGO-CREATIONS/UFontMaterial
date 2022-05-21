@@ -1,13 +1,13 @@
 // ========================================================================================
-//  Package/class	:	UFontMaterials.StrUtils
-//	Autor			    :	Jan "eGo" Urbansky
-//	WWW				    :	http://www.ego-creations.de
-//	Script Version:	0.1
+//  	Package/class	:	UFontMaterials.StrUtils
+//	Autor		:	Jan "eGo" Urbansky
+//	WWW		:	http://www.ego-creations.de
+//	Script Version	:	0.1
 //	last changed	:	12.03.2005 - 08:24
 //
-//	Description		:	some useful functions
+//	Description	:	some useful functions
 // ========================================================================================
-class StrUtils extends Main;
+class StrUtils extends Object;
 
 // ========================================================================================
 //	String Replacement
