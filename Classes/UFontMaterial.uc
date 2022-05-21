@@ -1,9 +1,9 @@
 // ========================================================================================
 //  Package/class	:  	ECTools.EC_UFontMaterial
-//	Autor		:		      Jan "eGo" Urbansky
-//	WWW		:			      http://www.ego-creations.de
+//	Autor		:	Jan "eGo" Urbansky
+//	WWW		:	http://www.ego-creations.de
 //	Script Version	:	0.6
-//	last changed	:	  12.03.2005 - 08:33
+//	last changed	:	12.03.2005 - 08:33
 //
 //	NOTE!!!!!!!!!!!!!
 //	This script only works correctly with UT2004. Recommend usage with v3186 and higher.
@@ -13,7 +13,7 @@
 //	http://wiki.beyondunreal.com/wiki/TrueTypeFontFactory
 // ========================================================================================
 
-class EC_UFontMaterial extends MaterialFactory;
+class UFontMaterial extends MaterialFactory;
 
 var class<Texture> MaterialClass;
 
@@ -44,7 +44,7 @@ var() enum EFontStyle
 	Bold_Italic,
 	Bolder,
 	Bolder_Italic,
-} FontStyle;					//UE2 and higher
+} FontStyle;				//UE2 and higher
 
 var() enum EFormat
 {
@@ -52,7 +52,7 @@ var() enum EFormat
 	DXT1,
 	DXT3,
 	DXT5,
-} TextureFormat;				//UE2 and higher
+} TextureFormat;			//UE2 and higher
 
 var() bool AntiAlias;
 var() string Chars;
@@ -65,7 +65,7 @@ var() int ExtendBoxLeft;		//UE2 and higher
 var() int ExtendBoxRight;		//UE2 and higher
 var() int ExtendBoxTop;			//UE2 and higher
 var() float Gamma;
-var() int Kerning;				//UE2 and higher
+var() int Kerning;			//UE2 and higher
 var() string Path;
 var() bool Underline;			//UE2 and higher
 var() string UnicodeRange;		//UE2 and higher
@@ -84,12 +84,12 @@ private function string GetFontStyle()
 	local string FS;
 
 	switch( string( GetEnum( enum'EFontStyle',FontStyle ) ) ) {
-		case "Normal":				FS = " STYLE=500 ITALIC=FALSE"; break;
-		case "Italic":				FS = " STYLE=500 ITALIC=TRUE"; break;
-		case "Bold":				FS = " STYLE=600 ITALIC=FALSE"; break;
-		case "Bold_Italic":			FS = " STYLE=600 ITALIC=TRUE"; break;
-		case "Bolder":				FS = " STYLE=700 ITALIC=FALSE"; break;
-		case "Bolder_Italic":		FS = " STYLE=700 ITALIC=TRUE"; break;
+		case "Normal":		FS = " STYLE=500 ITALIC=FALSE"; break;
+		case "Italic":		FS = " STYLE=500 ITALIC=TRUE"; break;
+		case "Bold":		FS = " STYLE=600 ITALIC=FALSE"; break;
+		case "Bold_Italic":	FS = " STYLE=600 ITALIC=TRUE"; break;
+		case "Bolder":		FS = " STYLE=700 ITALIC=FALSE"; break;
+		case "Bolder_Italic":	FS = " STYLE=700 ITALIC=TRUE"; break;
 	}
 
 	return FS;
@@ -116,44 +116,44 @@ private function string GetCompression()
 // ========================================================================================
 private function string NewTTFMaterial( string InPackage, string InGroup, string InName )
 {
-	local string S;   								        	// command string declaration
+	local string S;   						// command string declaration
 
-	S = "NEW TrueTypeFontFactory";         		       			// create font with TTF factory
-	S = S $ " NAME=\"" $ InName $ "\"";					    	// name of texture
+	S = "NEW TrueTypeFontFactory";         		       		// create font with TTF factory
+	S = S $ " NAME=\"" $ InName $ "\"";				// name of texture
 	S = S $ " CLASS=\"" $ string(MaterialClass) $ "\"";    		// name of class
-	S = S $ " GROUP=\"" $ InGroup $ "\"";				    	// name of group
-	S = S $ " PACKAGE=\"" $ InPackage $ "\"";			    	// name of package
-	S = S $ " HEIGHT=" $ string(FontSize);			        	// font height
-	S = S $ " USIZE=" $ string(USize);				        	// texture horizontal size
+	S = S $ " GROUP=\"" $ InGroup $ "\"";				// name of group
+	S = S $ " PACKAGE=\"" $ InPackage $ "\"";			// name of package
+	S = S $ " HEIGHT=" $ string(FontSize);			        // font height
+	S = S $ " USIZE=" $ string(USize);				// texture horizontal size
 	S = S $ " VSIZE=" $ string(VSize);                      	// texture vertical size
-	S = S $ " FONTNAME=\"" $ FontName $ "\"";	   		    	// Windows font name
-	S = S $ " YPAD=" $ string(YPad);				        	// texture tiles
-	S = S $ " XPAD=" $ string(XPad);				        	// texture tiles
-	S = S $ " ANTIALIAS=" $ string(AntiAlias);		        	// antialiasing
-	S = S $ " COUNT=" $ string(Count);				        	// char count
+	S = S $ " FONTNAME=\"" $ FontName $ "\"";	   		// Windows font name
+	S = S $ " YPAD=" $ string(YPad);				// texture tiles
+	S = S $ " XPAD=" $ string(XPad);				// texture tiles
+	S = S $ " ANTIALIAS=" $ string(AntiAlias);		        // antialiasing
+	S = S $ " COUNT=" $ string(Count);				// char count
 	S = S $ " DROPSHADOWX=" $ string(DropShadowX);	        	// shadow width X
 	S = S $ " DROPSHADOWY=" $ string(DropShadowY);	        	// shadow width Y
-	S = S $ " GAMMA=" $ string(Gamma);				        	// gamma value
+	S = S $ " GAMMA=" $ string(Gamma);				// gamma value
 //	S = S $ " CHARACTERSPERPAGE=" $ string(CharactersPerPage);
-	S = S $ " UNICODERANGE=\"" $ UnicodeRange $ "\"";	   		// Unicode characters, use Hex values comma separated
-	S = S $ " WILDCARD=\"" $ Wildcard $ "\"";			    	// includes a file with Unicode characters (e.g. MyChars.*)
+	S = S $ " UNICODERANGE=\"" $ UnicodeRange $ "\"";	   	// Unicode characters, use Hex values comma separated
+	S = S $ " WILDCARD=\"" $ Wildcard $ "\"";			// includes a file with Unicode characters (e.g. MyChars.*)
 	S = S $ " EXTENDBOXBOTTOM=" $ string(ExtendBoxBottom);		// size box of the character letter (bottom edge)
-	S = S $ " EXTENDBOXTOP=" $ string(ExtendBoxTop);			// size box of the character letter (top edge)
-	S = S $ " EXTENDBOXLEFT=" $ string(ExtendBoxLeft);			// size box of the character letter (left edge)
+	S = S $ " EXTENDBOXTOP=" $ string(ExtendBoxTop);		// size box of the character letter (top edge)
+	S = S $ " EXTENDBOXLEFT=" $ string(ExtendBoxLeft);		// size box of the character letter (left edge)
 	S = S $ " EXTENDBOXRIGHT=" $ string(ExtendBoxRight);		// size box of the character letter (right edge)
-	S = S $ " UNDERLINE=" $ string(Underline);					// underline style
-	S = S $ " PATH=\"" $ Path $ "\"";							// use it with Unicoderange (e.g. ".")
-	S = S $ " KERNING=" $ string(Kerning);						// spaces between the characters
-	S = S $ GetFontStyle();										// font style
-	S = S $ GetCompression();									// compression type
+	S = S $ " UNDERLINE=" $ string(Underline);			// underline style
+	S = S $ " PATH=\"" $ Path $ "\"";				// use it with Unicoderange (e.g. ".")
+	S = S $ " KERNING=" $ string(Kerning);				// spaces between the characters
+	S = S $ GetFontStyle();						// font style
+	S = S $ GetCompression();					// compression type
 
 	// add backslashes to a string variable
-	class'EC_StrUtils'.static.StrReplace( Chars , Chr(92) , Chr(92) $ Chr(92) );
-	class'EC_StrUtils'.static.StrReplace( Chars , Chr(34) , Chr(92) $ Chr(34) );
+	class'StrUtils'.static.StrReplace( Chars , Chr(92) , Chr(92) $ Chr(92) );
+	class'StrUtils'.static.StrReplace( Chars , Chr(34) , Chr(92) $ Chr(34) );
 
 	S = S $ " CHARS=\"" $ Chars $ "\"";	                    	// chars to include
 
-  	Log( S );													// log the command
+  	Log( S );							// log the command
 
 	return S;
 }
